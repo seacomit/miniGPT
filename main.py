@@ -35,3 +35,12 @@ validation_data = data[n:]
 # define the chunk size for randomly sampling the training data
 block_size = 8
 print(training_data[:block_size + 1])
+
+x = training_data[:block_size]
+y = training_data[1:block_size+1]
+#print(x)
+#print(y)
+for t in range(block_size):
+    context = x[:t+1]
+    target = y[t]
+    print(f"when input is {context}, the target is: {target}")
