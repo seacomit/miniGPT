@@ -25,3 +25,13 @@ print(encode("toast"))
 data = torch.tensor(encode(text), dtype=torch.long)
 print(data.shape, data.dtype)
 print(data[:1000])
+
+# split the data into a training set and a validation set
+# used to check for overfitting
+n = int(0.9 * len(data))
+training_data = data[:n]
+validation_data = data[n:]
+
+# define the chunk size for randomly sampling the training data
+block_size = 8
+print(training_data[:block_size + 1])
