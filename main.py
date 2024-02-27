@@ -1,3 +1,5 @@
+import torch
+
 text = ""
 with open('input.txt', 'r', encoding='utf-8') as f:
     text = f.read()
@@ -19,3 +21,6 @@ encode = lambda s: [stoi[c] for c in s]
 decode = lambda l: ''.join([itos[i] for i in l])
 
 print(encode("toast"))
+
+data = torch.tensor(encode(text), dtype=torch.long)
+print(data.shape, data.dtype)
