@@ -44,3 +44,24 @@ for t in range(block_size):
     context = x[:t+1]
     target = y[t]
     print(f"when input is {context}, the target is: {target}")
+
+torch.manual_seed(41127)
+batch_size = 4 # the number of blocks to process in parallel
+
+def get_batch(split):
+    # generate small batches of data with context of x and targets of y
+    data = training_data if split == 'train' else validation_data
+    ix = torch.randint(len(data) - block_size, (batch_size,))
+    print(ix) # print the generated offsets
+    x = torch.stack([data[i:i+block_size] for i in ix])
+    y = torch.stack([data[i+1:i+1+block_size] for i in ix])
+    return x, y
+
+xb, yb = get_batch('train')
+print('inputs:')
+print(xb.shape)
+print(xb)
+print('targets:')
+print(yb.shape)
+print(yb)
+print('----')
