@@ -24,3 +24,4 @@ print(encode("toast"))
 
 data = torch.tensor(encode(text), dtype=torch.long)
 print(data.shape, data.dtype)
+print(data[:1000])
